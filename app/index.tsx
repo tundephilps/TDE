@@ -4,11 +4,9 @@ import { Platform, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import SplashScreen from "@/screens/SplashScreen";
-import Homepage from "@/screens/Homepage";
+import Home from "@/screens/Home";
 import Favorite from "@/screens/Favorite";
 import Profile from "@/screens/Profile";
-import SignupScreen2 from "@/screens/SignUp2";
 
 // Importing icons
 import {
@@ -17,6 +15,8 @@ import {
   MaterialCommunityIcons,
   MaterialIcons,
   FontAwesome5,
+  Fontisto,
+  Feather,
 } from "@expo/vector-icons";
 import Feedback from "@/screens/Feedback";
 import InvitationCode from "@/screens/InvitationCode";
@@ -26,9 +26,13 @@ import Search from "@/screens/Search";
 import WithdrawCoins from "@/screens/WithdrawCoins";
 import Binge from "@/screens/Binge";
 import BuyCoins from "@/screens/BuyCoins";
+import AboutUs from "@/screens/AboutUs";
+import Settings from "@/screens/Settings";
+import Language from "@/screens/Language";
 
 type RootStackParamList = {
   Login: undefined;
+  Homepage: undefined;
   Feedback: undefined;
   InvitationCode: undefined;
   MyUploads: undefined;
@@ -37,9 +41,10 @@ type RootStackParamList = {
   Binge: undefined;
   Profile: undefined;
   Favorite: undefined;
-  Homepage: undefined;
   BuyCoins: undefined;
-  ConfirmPassword: undefined;
+  AboutUs: undefined;
+  Settings: undefined;
+  Language: undefined;
 };
 
 const Tab = createBottomTabNavigator();
@@ -57,17 +62,17 @@ const TabNavigator = () => (
           IconComponent = FontAwesome;
           iconName = "home";
         } else if (route.name === "Binge") {
-          IconComponent = Ionicons;
-          iconName = "layers";
+          IconComponent = Fontisto;
+          iconName = "film";
         } else if (route.name === "Upload") {
-          IconComponent = MaterialCommunityIcons;
-          iconName = "headset";
+          IconComponent = Feather;
+          iconName = "upload";
         } else if (route.name === "Favorite") {
-          IconComponent = MaterialIcons;
-          iconName = "insert-chart";
+          IconComponent = Feather;
+          iconName = "star";
         } else if (route.name === "Profile") {
           IconComponent = FontAwesome5;
-          iconName = "user-alt";
+          iconName = "user";
         }
 
         // Render the icon component
@@ -75,7 +80,7 @@ const TabNavigator = () => (
           <IconComponent
             name={iconName}
             size={24}
-            color={focused ? "#20409a" : "gray"}
+            color={focused ? "#ffffff" : "gray"}
           />
         );
       },
@@ -85,12 +90,13 @@ const TabNavigator = () => (
       },
       tabBarStyle: {
         height: Platform.OS === "ios" ? 89 : 55,
+        backgroundColor: "#0A0A0A",
       },
-      tabBarActiveTintColor: "#20409a",
+      tabBarActiveTintColor: "#ffffff",
       tabBarInactiveTintColor: "gray",
     })}
   >
-    <Tab.Screen name="Homepage" component={Homepage} />
+    <Tab.Screen name="Homepage" component={Home} />
     <Tab.Screen name="Binge" component={Binge} />
     <Tab.Screen name="Upload" component={Upload} />
     <Tab.Screen name="Favorite" component={Favorite} />
@@ -101,20 +107,20 @@ const TabNavigator = () => (
 export default function Index() {
   return (
     <Stack.Navigator
-      initialRouteName="BuyCoins"
+      initialRouteName="Homepage"
       screenOptions={{ headerShown: false }}
     >
       <Tab.Screen name="Favorite" component={Favorite} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Feedback" component={Feedback} />
       <Stack.Screen name="InvitationCode" component={InvitationCode} />
-
       <Tab.Screen name="MyUpload" component={MyUploads} />
-
       <Tab.Screen name="Search" component={Search} />
-
       <Tab.Screen name="WithdrawCoins" component={WithdrawCoins} />
       <Stack.Screen name="BuyCoins" component={BuyCoins} />
+      <Stack.Screen name="AboutUs" component={AboutUs} />
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Language" component={Language} />
       <Stack.Screen name="Homepage" component={TabNavigator} />
     </Stack.Navigator>
   );

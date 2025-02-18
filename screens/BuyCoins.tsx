@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
   View,
@@ -43,6 +44,12 @@ const BuyCoins = () => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.backButton}>
+        <View style={{ backgroundColor: "#5c5c59", padding: 2, opacity: 0.7 }}>
+          <Ionicons name="arrow-back" size={24} color="#fff" />
+        </View>
+        <Text style={styles.backText}>Feedback</Text>
+      </TouchableOpacity>
       {/* Balance Section */}
       <View style={styles.balanceContainer}>
         <Text style={styles.balanceText}>Balance</Text>
@@ -64,6 +71,10 @@ const BuyCoins = () => {
             onPress={() => setSelectedCoin(item.id)}
           >
             <Text style={styles.coinAmount}>{item.amount}</Text>
+            <Image
+              source={require("../assets/images/Coin.png")}
+              style={styles.coinIcon}
+            />
             <Text style={styles.coinPrice}>{item.price}</Text>
           </TouchableOpacity>
         )}
@@ -95,6 +106,16 @@ const BuyCoins = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#141414", padding: 20 },
+  backButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  backText: {
+    color: "#fff",
+    fontSize: 18,
+    marginLeft: 10,
+  },
   balanceContainer: {
     alignItems: "center",
     padding: 20,
@@ -102,19 +123,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   balanceText: { color: "#A0A0A0", fontSize: 16 },
-  balanceAmount: { color: "white", fontSize: 20, fontWeight: "bold" },
+  balanceAmount: { color: "#FF6A00", fontSize: 24, fontWeight: "bold" },
 
   coinCard: {
     padding: 15,
-    margin: 10,
+    marginTop: 15,
+    margin: 4,
     borderRadius: 10,
     borderWidth: 2,
     backgroundColor: "#222",
     alignItems: "center",
     width: 100,
+    height: 120,
   },
-  selectedCoin: { borderColor: "white" },
-  coinAmount: { color: "white", fontSize: 18, fontWeight: "bold" },
+
+  coinIcon: { width: 50, height: 50 },
+  selectedCoin: { borderColor: "white", height: 130 },
+  coinAmount: { color: "#FF6A00", fontSize: 18, fontWeight: "bold" },
   coinPrice: { color: "#A0A0A0", fontSize: 14 },
 
   paymentTitle: { color: "white", fontSize: 16, marginTop: 20 },
