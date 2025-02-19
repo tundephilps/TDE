@@ -102,7 +102,7 @@ const Profile = () => {
             <Image
               source={require("../assets/images/dollar.png")} // Replace with your local profile image
               style={{ width: 28, height: 28, borderRadius: 25 }}
-            />{" "}
+            />
             <Text style={{ color: "white", fontSize: 28, marginLeft: 5 }}>
               20
             </Text>

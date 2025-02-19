@@ -29,12 +29,49 @@ const slides = [
     genre: "Horror",
 
     episodes: "63",
-    title: "The Wars of Freedom",
+    title: "A kiss in the Rain",
     description:
       "A gripping tale of resilience and rebellion, where oppressed souls rise...",
 
-    image: require("../../assets/images/War.jpg"), // Load from local assets folder
+    image: require("../../assets/images/Swiper1.jpg"), // Load from local assets folder
   },
+  {
+    id: 3,
+
+    genre: "Horror",
+
+    episodes: "63",
+    title: "The Sudden Quake",
+    description:
+      "A gripping tale of resilience and rebellion, where oppressed souls rise...",
+
+    image: require("../../assets/images/Swiper2.jpg"), // Load from local assets folder
+  },
+  {
+    id: 4,
+
+    genre: "Horror",
+
+    episodes: "63",
+    title: "Lost Princess",
+    description:
+      "A gripping tale of resilience and rebellion, where oppressed souls rise...",
+
+    image: require("../../assets/images/Swiper3.jpg"), // Load from local assets folder
+  },
+  {
+    id: 5,
+
+    genre: "Horror",
+
+    episodes: "63",
+    title: "An Artist's Madness",
+    description:
+      "A gripping tale of resilience and rebellion, where oppressed souls rise...",
+
+    image: require("../../assets/images/Swiper4.jpg"), // Load from local assets folder
+  },
+
   // Add more slides if needed
 ];
 

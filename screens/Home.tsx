@@ -1,4 +1,8 @@
 import MyList from "@/components/Favorites/MyList";
+import AfricanStories from "@/components/Homepage/AfricanStories";
+import Animation from "@/components/Homepage/Animation";
+import Horror from "@/components/Homepage/Horror";
+import MostTrending from "@/components/Homepage/MostTrending";
 import SwiperScreen from "@/components/Homepage/SwiperScreen";
 import { Feather } from "@expo/vector-icons";
 import React, { useState } from "react";
@@ -30,15 +34,18 @@ const Home: React.FC = () => {
   const renderContent = () => {
     switch (activeTab) {
       case "African Stories":
-        return <MyList />;
-      case "Romance":
-        return <MyList />;
-      case "CEO Romance":
-        return <MyList />;
+        return <AfricanStories />;
+      case "Most Trending":
+        return <MostTrending />;
+      case "Animation":
+        return <Animation />;
+      case "Documentary":
+        return <Animation />;
+
       case "Horror":
-        return <MyList />;
+        return <Horror />;
       default:
-        return <MyList />;
+        return <Animation />;
     }
   };
   return (
