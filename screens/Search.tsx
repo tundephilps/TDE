@@ -11,7 +11,17 @@ import { Ionicons } from "@expo/vector-icons";
 import SearchContainer from "@/components/Search/SearchContainer";
 import SearchCard from "@/components/Search/SearchCard";
 
-const categories = ["African Stories", "Romance", "CEO Romance", "Horror"];
+const categories = [
+  "Most Trending",
+  "Continue Watching",
+  "Billionaire Hidden Identity",
+  "Love & Romance",
+  "Werewolf & Vampire",
+  "African Stories",
+  "Animation",
+  "Documentary & Podcast",
+  "You May Also Like",
+];
 
 const Search = () => {
   const [activeTab, setActiveTab] = useState(categories[0]);
@@ -19,13 +29,19 @@ const Search = () => {
   // Function to render the appropriate component based on active tab
   const renderContent = () => {
     switch (activeTab) {
+      case "Most Trending":
+        return <SearchCard />;
+      case "Billionaire Hidden Identity":
+        return <SearchCard />;
+      case "Love & Romance":
+        return <SearchCard />;
+      case "Werewolf & Vampire":
+        return <SearchCard />;
       case "African Stories":
         return <SearchCard />;
-      case "Romance":
+      case "Animation":
         return <SearchCard />;
-      case "CEO Romance":
-        return <SearchCard />;
-      case "Horror":
+      case "Documentary & Podcast":
         return <SearchCard />;
       default:
         return <SearchCard />;

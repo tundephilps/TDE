@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "VTU",
-    "slug": "VTU",
+    "name": "BingeReel",
+    "slug": "BingeReel",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/SplashLogo.png",
+    "icon": "./assets/images/Logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,8 +13,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/SplashLogo.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/Logo.png",
+        "backgroundColor": "#000000"
       }
     },
     "web": {
@@ -27,7 +27,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/SplashLogo.png",
+          "image": "./assets/images/Logo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"

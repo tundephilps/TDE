@@ -73,8 +73,11 @@ const Binge = () => {
 
       <StatusBar translucent backgroundColor="transparent" />
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
-          <Ionicons name="chevron-back" size={24} color="white" />
+        <TouchableOpacity
+          // onPress={() => navigation.goBack()}
+          style={styles.backButton}
+        >
+          <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>The Wars of Freedom</Text>
         <TouchableOpacity>
@@ -125,6 +128,51 @@ const Binge = () => {
 
         {/* Bottom Content */}
         <View style={styles.bottomContent}>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+            <View
+              style={{
+                borderWidth: 0.5,
+                borderColor: "yellow",
+                alignContent: "center",
+
+                borderRadius: 5,
+                backgroundColor: "#2d2d2f",
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 10,
+                  textAlign: "center",
+                  padding: 6,
+                }}
+              >
+                Vampires & Werewolves
+              </Text>
+            </View>
+
+            <View
+              style={{
+                borderWidth: 0.5,
+                borderColor: "yellow",
+                alignContent: "center",
+
+                borderRadius: 5,
+                backgroundColor: "#2d2d2f",
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 10,
+                  textAlign: "center",
+                  padding: 6,
+                }}
+              >
+                32 Episodes
+              </Text>
+            </View>
+          </View>
           <Text style={styles.title}>The Wars of Freedom</Text>
           <Text style={styles.description}>
             A gripping tale of resilience and rebellion, where oppressed souls
@@ -189,9 +237,8 @@ const styles = StyleSheet.create({
 
     zIndex: 10,
   },
-  backButton: {
-    padding: 0,
-  },
+
+  backButton: { padding: 8, backgroundColor: "#3f3e3e", borderRadius: 8 },
   headerTitle: {
     color: "white",
     fontSize: 18,

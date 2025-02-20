@@ -4,24 +4,37 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 const SignUpScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
-        Welcome to <Text style={styles.bold}>TDE</Text>
-      </Text>
-      <Text style={styles.subtitle}>
-        Sign up to unlock more features and earn from your content.
-      </Text>
+      <Image
+        source={require("../assets/images/Grid.png")} // Add Google icon in assets folder
+        style={styles.Grid}
+      />
+      <View
+        style={{
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
 
-      <TouchableOpacity style={styles.googleButton}>
-        <Image
-          source={require("../assets/images/google.png")} // Add Google icon in assets folder
-          style={styles.googleIcon}
-        />
-        <Text style={styles.googleText}>Sign up with Google</Text>
-      </TouchableOpacity>
+          zIndex: 50,
+        }}
+      >
+        <Text style={styles.title}>
+          Welcome to <Text style={styles.bold}>TDE</Text>
+        </Text>
+        <Text style={styles.subtitle}>
+          Sign up to unlock more features and earn from your content.
+        </Text>
+        <TouchableOpacity style={styles.googleButton}>
+          <Image
+            source={require("../assets/images/google.png")} // Add Google icon in assets folder
+            style={styles.googleIcon}
+          />
+          <Text style={styles.googleText}>Sign up with Google</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity>
-        <Text style={styles.notNow}>Not Now</Text>
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.notNow}>Not Now</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -33,8 +46,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000",
     alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 20,
+    position: "relative",
+  },
+  Grid: {
+    height: "65%",
+    width: "100%",
   },
   title: {
     fontSize: 24,
@@ -53,13 +69,16 @@ const styles = StyleSheet.create({
   googleButton: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#222",
     paddingVertical: 12,
-    paddingHorizontal: 20,
+    paddingHorizontal: 80,
     borderRadius: 30,
     marginTop: 20,
-    width: "100%",
-    justifyContent: "center",
+    alignSelf: "center",
+    alignContent: "center",
+    display: "flex",
+    textAlign: "center",
   },
   googleIcon: {
     width: 20,

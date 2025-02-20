@@ -57,13 +57,13 @@ const styles = StyleSheet.create({
   title: { color: "white", fontSize: 16, fontWeight: "bold" },
   tagContainer: {
     marginVertical: 5,
-    backgroundColor: "#381818",
+    backgroundColor: "#492b16",
     borderRadius: 5,
     paddingHorizontal: 8,
     paddingVertical: 3,
     alignSelf: "flex-start",
   },
-  tag: { color: "#CA0D0D", fontSize: 12 },
+  tag: { color: "#FF6A00", fontSize: 12 },
   description: { color: "gray", fontSize: 14, flexShrink: 1 },
 });
 

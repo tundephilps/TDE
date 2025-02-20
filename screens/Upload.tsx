@@ -13,6 +13,7 @@ import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 import Guidelines from "@/components/Upload/Guidelines";
 import { EvilIcons, Ionicons } from "@expo/vector-icons";
+import AddTags from "@/components/Upload/AddTags";
 
 const Upload = () => {
   const [title, setTitle] = useState("");
@@ -50,7 +51,7 @@ const Upload = () => {
   return (
     <ScrollView style={{ padding: 20, backgroundColor: "#0a0a0a" }}>
       <Text style={{ color: "white", fontSize: 24, fontWeight: "600" }}>
-        Upload Your Short Movie
+        Upload Your Video
       </Text>
       <Text style={{ color: "#878484", fontSize: 12, fontWeight: "600" }}>
         Ensure your movie follows the platform's guidelines before submitting.
@@ -58,31 +59,58 @@ const Upload = () => {
 
       <Guidelines />
       <View style={{ paddingVertical: 18, gap: 4 }}>
-        <Text style={{ color: "#505050" }}>Movie Title Input</Text>
+        <Text style={{ color: "#ffffff" }}>Movie Title Input</Text>
         <TextInput
           placeholder="Enter a catchy title"
           value={title}
           onChangeText={setTitle}
           style={styles.input}
-          placeholderTextColor="white"
+          placeholderTextColor="#505050"
         />
       </View>
 
       <View style={{ paddingVertical: 0, gap: 4 }}>
-        <Text style={{ color: "#505050" }}>Movie Description</Text>
+        <Text style={{ color: "#ffffff" }}>Movie Description</Text>
         <TextInput
           placeholder="Describe your movie in a few words"
           value={description}
           onChangeText={setDescription}
           style={styles.input}
-          placeholderTextColor="white"
+          placeholderTextColor="#505050"
           multiline
           numberOfLines={50}
         />
       </View>
+      <AddTags />
 
-      <View>
-        <Text style={{ color: "#505050" }}>Upload cover image</Text>
+      <View
+        style={{
+          backgroundColor: "#131313",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-around",
+          paddingVertical: 5,
+          borderRadius: 12,
+        }}
+      >
+        <Text style={{ color: "white" }}>Age Restriction</Text>
+        <Picker
+          style={{
+            backgroundColor: "#2C2C2C",
+            width: 140,
+            borderRadius: 8,
+            color: "white",
+          }}
+          selectedValue={ageRestriction}
+          onValueChange={setAgeRestriction}
+        >
+          <Picker.Item label="General" value="General" />
+          <Picker.Item label="18+" value="18+" />
+          <Picker.Item label="13+" value="13+" />
+        </Picker>
+      </View>
+      <View style={{ paddingTop: 12 }}>
+        <Text style={{ color: "#ffffff" }}>Upload cover image</Text>
       </View>
       {/* Upload Image Box */}
       <View style={styles.uploadcontainer}>
@@ -112,7 +140,9 @@ const Upload = () => {
 
       {/* Upload Episodes Box */}
       <View>
-        <Text style={{ color: "#505050" }}>Upload Episodes</Text>
+        <Text style={{ color: "#ffffff", paddingTop: 18 }}>
+          Upload Episodes
+        </Text>
       </View>
       <View style={styles.uploadcontainer}>
         <View style={styles.uploadBox}>
@@ -160,39 +190,18 @@ const Upload = () => {
         </View>
       ))}
 
-      <View
+      <TouchableOpacity
         style={{
-          backgroundColor: "#131313",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-around",
-          paddingVertical: 5,
-          borderRadius: 12,
+          backgroundColor: "#FF6A00",
+          padding: 16,
+          borderRadius: 8,
+          marginVertical: 20,
         }}
+        onPress={handleSubmit}
       >
-        <Text style={{ color: "white" }}>Age Restriction</Text>
-        <Picker
-          style={{
-            backgroundColor: "#2C2C2C",
-            width: 140,
-            borderRadius: 8,
-            color: "white",
-          }}
-          selectedValue={ageRestriction}
-          onValueChange={setAgeRestriction}
-        >
-          <Picker.Item label="General" value="General" />
-          <Picker.Item label="18+" value="18+" />
-          <Picker.Item label="13+" value="13+" />
-        </Picker>
-      </View>
-
-      <TouchableOpacity>
-        <Button
-          title="Upload & Submit For Approval"
-          onPress={handleSubmit}
-          color="orange"
-        />
+        <Text style={{ color: "white", textAlign: "center" }}>
+          Upload & Submit For Approval
+        </Text>
       </TouchableOpacity>
 
       <View style={{ height: 70 }} />
@@ -218,7 +227,7 @@ const styles = {
   },
   uploadBox: {
     borderRadius: 2,
-    padding: 12,
+    // padding: 12,
   },
   uploadText: {
     color: "#999",
@@ -230,12 +239,11 @@ const styles = {
     borderColor: "#444",
     borderStyle: "dashed",
     borderRadius: 8,
-    padding: 15,
+    paddingVertical: 35,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(50, 50, 50, 0.2)",
-    width: 120,
-    height: 80,
+    width: "100%",
     alignSelf: "center",
     marginVertical: 15,
   },

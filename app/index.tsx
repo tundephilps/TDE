@@ -29,14 +29,16 @@ import BuyCoins from "@/screens/BuyCoins";
 import AboutUs from "@/screens/AboutUs";
 import Settings from "@/screens/Settings";
 import Language from "@/screens/Language";
+import EditEpisode from "@/screens/EditEpisode";
 
 type RootStackParamList = {
   Login: undefined;
   Homepage: undefined;
   Feedback: undefined;
   InvitationCode: undefined;
-  MyUploads: undefined;
+  MyUpload: undefined;
   Search: undefined;
+  EditEpisode: undefined;
   WithdrawCoins: undefined;
   Binge: undefined;
   Profile: undefined;
@@ -107,7 +109,7 @@ const TabNavigator = () => (
 export default function Index() {
   return (
     <Stack.Navigator
-      initialRouteName="Homepage"
+      initialRouteName="EditEpisode"
       screenOptions={{ headerShown: false }}
     >
       <Tab.Screen name="Favorite" component={Favorite} />
@@ -116,6 +118,8 @@ export default function Index() {
       <Stack.Screen name="InvitationCode" component={InvitationCode} />
       <Tab.Screen name="MyUpload" component={MyUploads} />
       <Tab.Screen name="Search" component={Search} />
+
+      <Tab.Screen name="EditEpisode" component={EditEpisode} />
       <Tab.Screen name="WithdrawCoins" component={WithdrawCoins} />
       <Stack.Screen name="BuyCoins" component={BuyCoins} />
       <Stack.Screen name="AboutUs" component={AboutUs} />

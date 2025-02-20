@@ -21,10 +21,14 @@ const { width, height } = Dimensions.get("window");
 
 const categories = [
   "Most Trending",
+  "Continue Watching",
+  "Billionaire Hidden Identity",
+  "Love & Romance",
+  "Werewolf & Vampire",
   "African Stories",
   "Animation",
-  "Documentary",
-  "Horror",
+  "Documentary & Podcast",
+  "You May Also Like",
 ];
 
 const Home: React.FC = () => {
@@ -33,16 +37,16 @@ const Home: React.FC = () => {
   // Function to render the appropriate component based on active tab
   const renderContent = () => {
     switch (activeTab) {
-      case "African Stories":
-        return <AfricanStories />;
       case "Most Trending":
+        return <AfricanStories />;
+      case "Billionaire Hidden Identity":
         return <MostTrending />;
-      case "Animation":
+      case "Love & Romance":
         return <Animation />;
-      case "Documentary":
+      case "Werewolf & Vampire":
         return <Animation />;
 
-      case "Horror":
+      case "African Stories":
         return <Horror />;
       default:
         return <Animation />;
