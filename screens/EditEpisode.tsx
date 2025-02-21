@@ -6,14 +6,15 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  Modal,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as DocumentPicker from "expo-document-picker";
+import EpisodeSelector from "@/components/EditEpisodes/EpisodesModal";
 
 const EditEpisode = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [selectedEpisode, setSelectedEpisode] = useState("Ep 01");
   const [videoFile, setVideoFile] = useState(null);
 
   const pickVideo = async () => {
@@ -26,20 +27,14 @@ const EditEpisode = () => {
     }
   };
 
-  const handleSave = () => {
-    console.log("Saving changes...");
-    console.log("Title:", title);
-    console.log("Description:", description);
-    console.log("Episode:", selectedEpisode);
-    console.log("Video:", videoFile ? videoFile.name : "No file selected");
-  };
-
   return (
     <View style={styles.container}>
       {/* Header */}
       <TouchableOpacity style={styles.backButton}>
-        <Ionicons name="arrow-back" size={24} color="#fff" />
-        <Text style={styles.headerText}>Edit Episodes</Text>
+        <View style={styles.backIcon}>
+          <Ionicons name="arrow-back" size={24} color="#fff" />
+        </View>
+        <Text style={styles.backText}>Edit Episodes</Text>
       </TouchableOpacity>
 
       {/* Movie Title */}
@@ -64,11 +59,12 @@ const EditEpisode = () => {
       />
 
       {/* Episode Selector */}
-      <Text style={styles.label}>Select episode to replace</Text>
-      <TouchableOpacity style={styles.episodeSelector}>
-        <Text style={styles.episodeText}>{selectedEpisode}</Text>
-        <Ionicons name="chevron-down" size={20} color="#fff" />
-      </TouchableOpacity>
+
+      <View style={styles.episodeSelector}>
+        <Text style={styles.label}>Select episode to replace</Text>
+
+        <EpisodeSelector />
+      </View>
 
       {/* Video Upload */}
       <Text style={styles.label}>Upload new/replace video</Text>
@@ -85,7 +81,7 @@ const EditEpisode = () => {
       <Text style={styles.supportText}>⚠ Supports MP4, 1-minute max</Text>
 
       {/* Save Button */}
-      <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
+      <TouchableOpacity style={styles.saveButton}>
         <Text style={styles.saveText}>Save Changes</Text>
       </TouchableOpacity>
     </View>
@@ -104,6 +100,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 20,
+  },
+  backIcon: {
+    backgroundColor: "#3f3e3e",
+    borderRadius: 8,
+    padding: 6,
+  },
+  backText: {
+    color: "#fff",
+    fontSize: 18,
+    marginLeft: 10,
+    fontWeight: "700",
   },
   headerText: {
     color: "#fff",

@@ -30,6 +30,7 @@ import AboutUs from "@/screens/AboutUs";
 import Settings from "@/screens/Settings";
 import Language from "@/screens/Language";
 import EditEpisode from "@/screens/EditEpisode";
+import EpisodeSelector from "@/components/EditEpisodes/EpisodesModal";
 
 type RootStackParamList = {
   Login: undefined;
@@ -109,7 +110,7 @@ const TabNavigator = () => (
 export default function Index() {
   return (
     <Stack.Navigator
-      initialRouteName="EditEpisode"
+      initialRouteName="Homepage"
       screenOptions={{ headerShown: false }}
     >
       <Tab.Screen name="Favorite" component={Favorite} />
@@ -120,6 +121,8 @@ export default function Index() {
       <Tab.Screen name="Search" component={Search} />
 
       <Tab.Screen name="EditEpisode" component={EditEpisode} />
+
+      <Tab.Screen name="EpisodeModal" component={EpisodeSelector} />
       <Tab.Screen name="WithdrawCoins" component={WithdrawCoins} />
       <Stack.Screen name="BuyCoins" component={BuyCoins} />
       <Stack.Screen name="AboutUs" component={AboutUs} />

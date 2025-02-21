@@ -11,6 +11,7 @@ import {
 import { Video } from "expo-av";
 import { LinearGradient } from "expo-linear-gradient";
 import { Fontisto, Ionicons, MaterialIcons } from "@expo/vector-icons";
+import EpisodeSelector from "@/components/Binge/EpisodesModal";
 
 const { width, height } = Dimensions.get("window");
 
@@ -112,13 +113,7 @@ const Binge = () => {
             <Fontisto name="share-a" size={24} color="white" />
             <Text style={{ color: "white", fontSize: 10 }}>Share</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <Fontisto name="play-list" size={20} color="white" />
-
-            <Text style={{ color: "white", fontSize: 10, paddingTop: 2 }}>
-              Episodes
-            </Text>
-          </TouchableOpacity>
+          <EpisodeSelector />
           <TouchableOpacity style={styles.iconButton}>
             <Ionicons name="star" size={26} color="white" />
 
