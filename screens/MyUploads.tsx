@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Modal,
+} from "react-native";
 import {
   Ionicons,
   Entypo,
   MaterialIcons,
   FontAwesome5,
 } from "@expo/vector-icons";
-import Modal from "react-native-modal";
-
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 type RootStackParamList = {
@@ -21,21 +26,21 @@ const MyUploads = () => {
   const handleEdit = async () => {
     navigation.navigate("EditEpisode");
   };
+
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
-
   const [isSuccessModalVisible, setSuccessModalVisible] = useState(false);
 
   const toggleMenu = () => setMenuVisible(!isMenuVisible);
   const toggleDeleteModal = () => {
-    setMenuVisible(false); // Close menu before opening confirmation modal
+    setMenuVisible(false);
     setDeleteModalVisible(!isDeleteModalVisible);
   };
 
   const confirmDelete = () => {
-    setDeleteModalVisible(false); // Close delete confirmation
+    setDeleteModalVisible(false);
     setTimeout(() => {
-      setSuccessModalVisible(true); // Show success modal after a short delay
+      setSuccessModalVisible(true);
     }, 300);
   };
 
@@ -88,82 +93,75 @@ const MyUploads = () => {
       </View>
 
       {/* Menu Modal */}
-      <Modal
-        isVisible={isMenuVisible}
-        onBackdropPress={toggleMenu}
-        style={styles.modal}
-      >
-        <View style={styles.popup}>
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => {
-              setMenuVisible(false);
-              setDeleteModalVisible(true);
-            }}
-          >
-            <MaterialIcons name="delete" size={20} color="white" />
-            <Text style={styles.menuText}>Delete</Text>
-          </TouchableOpacity>
+      <Modal visible={isMenuVisible} transparent animationType="fade">
+        <TouchableOpacity style={styles.overlay} onPress={toggleMenu}>
+          <View style={styles.popup}>
+            <TouchableOpacity
+              style={styles.menuItem}
+              onPress={toggleDeleteModal}
+            >
+              <MaterialIcons name="delete" size={20} color="white" />
+              <Text style={styles.menuText}>Delete</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity style={styles.menuItem} onPress={handleEdit}>
-            <MaterialIcons name="edit" size={20} color="white" />
-            <Text style={styles.menuText}>Edit episodes</Text>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity style={styles.menuItem} onPress={handleEdit}>
+              <MaterialIcons name="edit" size={20} color="white" />
+              <Text style={styles.menuText}>Edit episodes</Text>
+            </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
       </Modal>
 
       {/* Delete Confirmation Modal */}
-      <Modal
-        isVisible={isDeleteModalVisible}
-        onBackdropPress={toggleDeleteModal}
-        style={styles.modal}
-      >
-        <View style={styles.deletePopup}>
-          <Text style={styles.confirmText}>
-            Are you sure you want to delete this episode?
-          </Text>
-          <Text style={styles.warningText}>This action cannot be undone.</Text>
-          <Image
-            source={require("../assets/images/Jack.png")}
-            style={styles.deleteImage}
-          />
-          <Text style={styles.title}>The Forbidden Love</Text>
+      <Modal visible={isDeleteModalVisible} transparent animationType="fade">
+        <View style={styles.overlay}>
+          <View style={styles.deletePopup}>
+            <Text style={styles.confirmText}>
+              Are you sure you want to delete this episode?
+            </Text>
+            <Text style={styles.warningText}>
+              This action cannot be undone.
+            </Text>
+            <Image
+              source={require("../assets/images/Jack.png")}
+              style={styles.deleteImage}
+            />
+            <Text style={styles.title}>The Forbidden Love</Text>
 
-          <View style={styles.buttonRow}>
-            <TouchableOpacity
-              style={styles.cancelButton}
-              onPress={toggleDeleteModal}
-            >
-              <Text style={styles.cancelText}>Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.deleteButton}
-              onPress={confirmDelete}
-            >
-              <Text style={styles.deleteText}>Delete</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonRow}>
+              <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={toggleDeleteModal}
+              >
+                <Text style={styles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.deleteButton}
+                onPress={confirmDelete}
+              >
+                <Text style={styles.deleteText}>Delete</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Modal>
 
       {/* Success Modal */}
-      <Modal
-        isVisible={isSuccessModalVisible}
-        onBackdropPress={() => setSuccessModalVisible(false)}
-        style={styles.modal}
-      >
-        <View style={styles.successPopup}>
-          <Text style={styles.successText}>Movie Successfully deleted.</Text>
-          <Image
-            source={require("../assets/images/success.png")}
-            style={styles.successImage}
-          />
-          <TouchableOpacity
-            style={styles.bingeButton}
-            onPress={() => setSuccessModalVisible(false)}
-          >
-            <Text style={styles.bingeText}>Binge watch</Text>
-          </TouchableOpacity>
+      <Modal visible={isSuccessModalVisible} transparent animationType="fade">
+        <View style={styles.overlay}>
+          <View style={styles.successPopup}>
+            <Text style={styles.successText}>Movie Successfully deleted.</Text>
+            <Image
+              source={require("../assets/images/success.png")}
+              style={styles.successImage}
+            />
+            <TouchableOpacity
+              style={styles.bingeButton}
+              onPress={() => setSuccessModalVisible(false)}
+            >
+              <Text style={styles.bingeText}>Binge watch</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </Modal>
     </View>
@@ -188,6 +186,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginLeft: 10,
     fontWeight: "700",
+  },
+  overlay: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
   },
   itemContainer: {
     flexDirection: "row",

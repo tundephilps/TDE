@@ -13,11 +13,11 @@ import { useNavigation } from "@react-navigation/native";
 const Ads = () => {
   const navigation = useNavigation();
   const dailyRewards = [
-    { day: "Today", coins: "+20" },
-    { day: "Day 02", coins: "+20" },
-    { day: "Day 03", coins: "+25" },
-    { day: "Day 04", coins: "+25" },
-    { day: "Day 05", coins: "+30" },
+    { day: "Today", coins: "+5" },
+    { day: "Day 02", coins: "+10" },
+    { day: "Day 03", coins: "+15" },
+    { day: "Day 04", coins: "+20" },
+    { day: "Day 05", coins: "+25" },
   ];
 
   return (
@@ -85,7 +85,7 @@ const Ads = () => {
               <Text
                 style={{ fontSize: 16, color: "white", marginHorizontal: 8 }}
               >
-                +200
+                +50
               </Text>
             </View>
           </View>
@@ -113,7 +113,7 @@ const Ads = () => {
               <Text
                 style={{ fontSize: 16, color: "white", marginHorizontal: 8 }}
               >
-                Get 100 Extra Coins
+                Get 5 Extra Coins
               </Text>
             </View>
           </View>
@@ -172,10 +172,10 @@ const styles = StyleSheet.create({
     width: 80,
     height: 120,
     borderWidth: 1,
-    borderColor: "#FF6A00",
+    borderColor: "#F51352",
   },
   rewardDay: {
-    color: "#FF6A00",
+    color: "#F51352",
     fontSize: 14,
     fontWeight: "bold",
   },
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
   },
   button: {
-    backgroundColor: "#FF6A00",
+    backgroundColor: "#F51352",
     paddingVertical: 6,
     paddingHorizontal: 15,
     borderRadius: 5,

@@ -63,7 +63,7 @@ const Animation = () => {
           <TouchableOpacity style={styles.card} onPress={handleVideoPlay}>
             <Image source={item.image} style={styles.image} />
             <View style={styles.overlay}>
-              <Ionicons name="play" size={14} color="white" />
+              <Ionicons name="eye" size={10} color="white" />
               <Text style={styles.views}>{item.views}</Text>
             </View>
             <Text style={styles.title}>{item.title}</Text>
@@ -93,19 +93,16 @@ const styles = StyleSheet.create({
   overlay: {
     flexDirection: "row",
     alignItems: "center",
-    // position: "absolute",
-    // top: 10,
-    // left: 10,
 
     backgroundColor: "#323232",
     padding: 5,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "#FFD700",
+    borderColor: "#F51352",
     marginVertical: 2,
-    width: 100,
+    width: 80,
   },
-  views: { color: "white", fontSize: 12, marginLeft: 5 },
+  views: { color: "white", fontSize: 10, marginLeft: 5 },
   title: {
     color: "white",
     fontSize: 16,

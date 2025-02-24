@@ -136,7 +136,7 @@ const SwiperScreen: React.FC = () => {
                 <View
                   style={{
                     borderWidth: 0.5,
-                    borderColor: "yellow",
+                    borderColor: "#F51352",
                     alignContent: "center",
 
                     borderRadius: 5,
@@ -158,7 +158,7 @@ const SwiperScreen: React.FC = () => {
                 <View
                   style={{
                     borderWidth: 0.5,
-                    borderColor: "yellow",
+                    borderColor: "#F51352",
                     alignContent: "center",
 
                     borderRadius: 5,
@@ -201,7 +201,7 @@ const SwiperScreen: React.FC = () => {
               </Text>
               <TouchableOpacity
                 style={{
-                  backgroundColor: "#FF6A00",
+                  backgroundColor: "#F51352",
                   paddingVertical: 5,
 
                   paddingHorizontal: 30,

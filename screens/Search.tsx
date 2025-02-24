@@ -105,14 +105,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#FF6A00",
+    borderColor: "#F51352",
     marginRight: 10,
   },
   activeTab: {
-    backgroundColor: "#FF6A00",
+    backgroundColor: "#F51352",
   },
   tabText: {
-    color: "#FF6A00",
+    color: "#F51352",
     fontSize: 9,
   },
   activeTabText: {

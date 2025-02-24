@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   balanceText: { color: "#A0A0A0", fontSize: 16 },
-  balanceAmount: { color: "#FF6A00", fontSize: 24, fontWeight: "bold" },
+  balanceAmount: { color: "#F51352", fontSize: 24, fontWeight: "bold" },
 
   coinCard: {
     padding: 15,
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
 
   coinIcon: { width: 50, height: 50 },
   selectedCoin: { borderColor: "white", height: 130 },
-  coinAmount: { color: "#FF6A00", fontSize: 18, fontWeight: "bold" },
+  coinAmount: { color: "#F51352", fontSize: 18, fontWeight: "bold" },
   coinPrice: { color: "#A0A0A0", fontSize: 14 },
 
   paymentTitle: { color: "white", fontSize: 16, marginTop: 20 },

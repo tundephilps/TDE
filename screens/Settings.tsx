@@ -45,7 +45,7 @@ const Settings = () => {
         <Switch
           value={isNotificationsEnabled}
           onValueChange={() => setNotificationsEnabled(!isNotificationsEnabled)}
-          trackColor={{ false: "#767577", true: "#ff7300" }}
+          trackColor={{ false: "#767577", true: "#F51352" }}
           thumbColor={isNotificationsEnabled ? "#fff" : "#f4f3f4"}
         />
       </View>
@@ -59,7 +59,7 @@ const Settings = () => {
         <Switch
           value={isDarkModeEnabled}
           onValueChange={() => setDarkModeEnabled(!isDarkModeEnabled)}
-          trackColor={{ false: "#767577", true: "#ff7300" }}
+          trackColor={{ false: "#767577", true: "#F51352" }}
           thumbColor={isDarkModeEnabled ? "#fff" : "#f4f3f4"}
         />
       </View> */}
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   settingRow: {
     flexDirection: "row",
     alignItems: "center",
-    paddingTop: 10,
+    paddingVertical: 10,
     // borderBottomWidth: 0.5,
     // borderBottomColor: "#333",
   },

@@ -62,7 +62,7 @@ const WithdrawCoins = () => {
           <Text
             style={{
               position: "absolute",
-              color: "#FF6A00",
+              color: "#F51352",
               fontSize: 30,
               zIndex: 30,
               bottom: "30%",

@@ -179,7 +179,7 @@ const Profile: React.FC = () => {
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
               style={{
-                backgroundColor: "#ff8c00",
+                backgroundColor: "#F51352",
                 paddingHorizontal: 10,
                 paddingVertical: 5,
                 borderRadius: 5,

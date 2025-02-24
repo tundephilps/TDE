@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   languageText: { color: "white", fontSize: 16 },
-  selected: { color: "#ff7300", fontSize: 18 },
+  selected: { color: "#F51352", fontSize: 18 },
   unselected: { color: "#555", fontSize: 18 },
 });
 

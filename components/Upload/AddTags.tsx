@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#222",
     padding: 8,
     borderRadius: 8,
-    borderColor: "#FF6A00",
+    borderColor: "#F51352",
     borderWidth: 1,
   },
   tagText: { color: "#fff" },

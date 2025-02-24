@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   activeTab: {
-    // backgroundColor: "#FF6A00",
+    // backgroundColor: "#F51352",
     color: "white",
     borderBottomColor: "white",
     borderBottomWidth: 1,

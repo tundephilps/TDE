@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   image: { width: 90, height: 90, borderRadius: 5 },
   details: { flex: 1, marginLeft: 15 },
   title: { color: "white", fontSize: 16, fontWeight: "bold" },
-  episodes: { color: "#FF6A00", fontSize: 14, marginTop: 5 },
+  episodes: { color: "#F51352", fontSize: 14, marginTop: 5 },
 });
 
 export default History;

@@ -11,7 +11,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useWindowDimensions } from "react-native";
 
-const episodes = ["Trailer", ...Array.from({ length: 41 }, (_, i) => i)];
+const episodes = [...Array.from({ length: 41 }, (_, i) => i)];
 
 const EpisodesModal = ({ visible, onClose }) => {
   return (
@@ -96,7 +96,7 @@ export default EpisodeSelector;
 
 const styles = StyleSheet.create({
   openButton: {
-    backgroundColor: "#FF6A00",
+    backgroundColor: "#F51352",
     padding: 15,
     borderRadius: 6,
   },
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   unlocked: {
-    backgroundColor: "#FF6A00",
+    backgroundColor: "#F51352",
   },
   locked: {
     backgroundColor: "#222",

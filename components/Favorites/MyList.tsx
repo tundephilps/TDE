@@ -44,7 +44,7 @@ const MyList = () => {
           <View style={styles.card}>
             <Image source={item.image} style={styles.image} />
             <View style={styles.overlay}>
-              <Ionicons name="play" size={14} color="white" />
+              <Ionicons name="eye" size={10} color="white" />
               <Text style={styles.views}>{item.views}</Text>
             </View>
             <Text style={styles.title}>{item.title}</Text>
@@ -82,11 +82,11 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "#FFD700",
+    borderColor: "#F51352",
     marginVertical: 2,
-    width: 100,
+    width: 90,
   },
-  views: { color: "white", fontSize: 12, marginLeft: 5 },
+  views: { color: "white", fontSize: 10, marginLeft: 5 },
   title: {
     color: "white",
     fontSize: 16,

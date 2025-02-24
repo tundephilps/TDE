@@ -11,7 +11,7 @@ import {
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { useWindowDimensions } from "react-native";
 
-const episodes = ["Trailer", ...Array.from({ length: 41 }, (_, i) => i)];
+const episodes = [...Array.from({ length: 41 }, (_, i) => i)];
 
 const EpisodesModal = ({ visible, onClose }) => {
   return (
@@ -66,22 +66,6 @@ const EpisodeSelector = () => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View>
-      {/* <TouchableOpacity onPress={() => setModalVisible(true)}>
-        <View
-          style={{
-            backgroundColor: "#1e1e1e",
-            padding: 6,
-            flexDirection: "row",
-            gap: 6,
-            borderRadius: 6,
-            alignItems: "center",
-          }}
-        >
-          <Text style={{ color: "white" }}>Ep 00</Text>
-
-          <Ionicons name="chevron-down" size={20} color="#fff" />
-        </View>
-      </TouchableOpacity> */}
       <TouchableOpacity
         onPress={() => setModalVisible(true)}
         style={{
@@ -109,7 +93,7 @@ export default EpisodeSelector;
 
 const styles = StyleSheet.create({
   openButton: {
-    backgroundColor: "#FF6A00",
+    backgroundColor: "#F51352",
     padding: 15,
     borderRadius: 6,
   },
@@ -153,7 +137,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   unlocked: {
-    backgroundColor: "#FF6A00",
+    backgroundColor: "#F51352",
   },
   locked: {
     backgroundColor: "#222",

@@ -24,19 +24,24 @@ const Guidelines: React.FC = () => {
       <View style={styles.listContainer}>
         <View style={styles.bulletItem}>
           <View style={styles.bullet} />
+          <Text style={styles.bulletText}>Vertical Movies Only</Text>
+        </View>
+
+        <View style={styles.bulletItem}>
+          <View style={styles.bullet} />
           <Text style={styles.bulletText}>
-            Max episode duration: 60 seconds
+            Each Episode must be between 1 to 3 minutes in duration
           </Text>
         </View>
 
         <View style={styles.bulletItem}>
           <View style={styles.bullet} />
-          <Text style={styles.bulletText}>Max episode count: 120</Text>
+          <Text style={styles.bulletText}>Total of 40 to 120 Episodes</Text>
         </View>
 
         <View style={styles.bulletItem}>
           <View style={styles.bullet} />
-          <Text style={styles.bulletText}>No copyrighted content</Text>
+          <Text style={styles.bulletText}>No Copyright Content</Text>
         </View>
 
         <View style={styles.bulletItem}>
@@ -45,11 +50,14 @@ const Guidelines: React.FC = () => {
             Ensure high video quality (720p minimum)
           </Text>
         </View>
-
+        <View style={styles.bulletItem}>
+          <View style={styles.bullet} />
+          <Text style={styles.bulletText}>Movies should have subtitles</Text>
+        </View>
         <View style={styles.bulletItem}>
           <View style={styles.bullet} />
           <Text style={styles.bulletText}>
-            Content must comply with platform rules
+            Content should comply with platform rules
           </Text>
         </View>
       </View>

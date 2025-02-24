@@ -37,7 +37,7 @@ import VideoPlay from "@/screens/VideoPlay";
 
 type RootStackParamList = {
   Login: undefined;
-  Homepage: undefined;
+  Home: undefined;
   Feedback: undefined;
   InvitationCode: undefined;
   MyUpload: undefined;
@@ -67,7 +67,7 @@ const TabNavigator = () => (
         let iconName;
 
         // Assign icons based on the route name
-        if (route.name === "Homepage") {
+        if (route.name === "Home") {
           IconComponent = FontAwesome;
           iconName = "home";
         } else if (route.name === "Binge") {
@@ -98,14 +98,14 @@ const TabNavigator = () => (
         fontWeight: "700",
       },
       tabBarStyle: {
-        height: Platform.OS === "ios" ? 89 : 55,
+        height: Platform.OS === "ios" ? 65 : 55,
         backgroundColor: "#0A0A0A",
       },
       tabBarActiveTintColor: "#ffffff",
       tabBarInactiveTintColor: "gray",
     })}
   >
-    <Tab.Screen name="Homepage" component={Home} />
+    <Tab.Screen name="Home" component={Home} />
     <Tab.Screen name="Binge" component={Binge} />
     <Tab.Screen name="Upload" component={Upload} />
     <Tab.Screen name="Favorite" component={Favorite} />
@@ -116,11 +116,11 @@ const TabNavigator = () => (
 export default function Index() {
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="Home"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Homepage" component={TabNavigator} />
+      <Stack.Screen name="Home" component={TabNavigator} />
 
       <Tab.Screen name="Favorite" component={Favorite} />
       <Stack.Screen name="Feedback" component={Feedback} />

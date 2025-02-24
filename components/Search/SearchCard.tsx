@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     alignSelf: "flex-start",
   },
-  tag: { color: "#FF6A00", fontSize: 12 },
+  tag: { color: "#F51352", fontSize: 12 },
   description: { color: "gray", fontSize: 14, flexShrink: 1 },
 });
 

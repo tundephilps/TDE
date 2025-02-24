@@ -70,7 +70,7 @@ const Feedback = () => {
             <Ionicons
               name={index < rating ? "star" : "star-outline"}
               size={28}
-              color={index < rating ? "#FFD700" : "#ababab"}
+              color={index < rating ? "#F51352" : "#ababab"}
             />
           </TouchableOpacity>
         ))}
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   selectedTag: {
-    backgroundColor: "#FFD700",
+    backgroundColor: "#F51352",
   },
   selectedTagText: {
     color: "#000",
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
   saveButton: {
-    backgroundColor: "#FF6A00",
+    backgroundColor: "#F51352",
     padding: 15,
     borderRadius: 6,
     alignItems: "center",

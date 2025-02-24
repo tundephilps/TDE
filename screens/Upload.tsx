@@ -103,7 +103,7 @@ const Upload = () => {
         <View style={styles.container}>
           <Text style={styles.label}>{isAdult ? "18+" : "General"}</Text>
           <Switch
-            trackColor={{ false: "#767577", true: "#FF6A00" }}
+            trackColor={{ false: "#767577", true: "#F51352" }}
             thumbColor={isAdult ? "#FFA500" : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleSwitch}
@@ -119,7 +119,7 @@ const Upload = () => {
         <View style={styles.uploadBox}>
           <TouchableOpacity style={styles.dottedBox} onPress={pickImage}>
             <View style={styles.iconContainer}>
-              <Ionicons name="cloud-upload-sharp" size={24} color="#FFD700" />
+              <Ionicons name="cloud-upload-sharp" size={24} color="#F51352" />
             </View>
             <Text style={styles.fromDeviceText}>From device</Text>
           </TouchableOpacity>
@@ -150,7 +150,7 @@ const Upload = () => {
         <View style={styles.uploadBox}>
           <TouchableOpacity style={styles.dottedBox} onPress={pickVideo}>
             <View style={styles.iconContainer}>
-              <Ionicons name="cloud-upload-sharp" size={24} color="#FFD700" />
+              <Ionicons name="cloud-upload-sharp" size={24} color="#F51352" />
             </View>
             <Text style={styles.fromDeviceText}>From device</Text>
           </TouchableOpacity>
@@ -192,7 +192,7 @@ const Upload = () => {
 
       <TouchableOpacity
         style={{
-          backgroundColor: "#FF6A00",
+          backgroundColor: "#F51352",
           padding: 16,
           borderRadius: 8,
           marginVertical: 20,
