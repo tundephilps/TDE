@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   episodeText: {
-    color: "#FF6A00",
+    color: "#F51352",
     fontSize: 10,
   },
   statusText: {
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     flex: 1,
-    backgroundColor: "#FF6A00",
+    backgroundColor: "#F51352",
     padding: 12,
     borderRadius: 8,
     alignItems: "center",
@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   bingeButton: {
-    backgroundColor: "#FF6A00",
+    backgroundColor: "#F51352",
     padding: 12,
     borderRadius: 8,
     alignItems: "center",

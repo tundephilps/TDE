@@ -11,7 +11,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useWindowDimensions } from "react-native";
 
-const episodes = [...Array.from({ length: 41 }, (_, i) => i)];
+const episodes = [...Array.from({ length: 41 }, (_, i) => i + 1)];
 
 const EpisodesModal = ({ visible, onClose }) => {
   return (
