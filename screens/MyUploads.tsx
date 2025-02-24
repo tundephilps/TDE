@@ -7,10 +7,20 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 import Modal from "react-native-modal";
-import { useNavigation } from "@react-navigation/native";
+
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+
+type RootStackParamList = {
+  EditEpisode: undefined;
+};
+
+type NavigationProps = NavigationProp<RootStackParamList>;
 
 const MyUploads = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
+  const handleEdit = async () => {
+    navigation.navigate("EditEpisode");
+  };
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
 
@@ -95,20 +105,9 @@ const MyUploads = () => {
             <Text style={styles.menuText}>Delete</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => console.log("Edit Pressed")}
-          >
+          <TouchableOpacity style={styles.menuItem} onPress={handleEdit}>
             <MaterialIcons name="edit" size={20} color="white" />
             <Text style={styles.menuText}>Edit episodes</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => console.log("Earnings Pressed")}
-          >
-            <FontAwesome5 name="money-bill-wave" size={20} color="white" />
-            <Text style={styles.menuText}>View earnings</Text>
           </TouchableOpacity>
         </View>
       </Modal>

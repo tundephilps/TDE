@@ -12,7 +12,15 @@ import { Ionicons } from "@expo/vector-icons";
 import * as DocumentPicker from "expo-document-picker";
 import EpisodeSelector from "@/components/EditEpisodes/EpisodesModal";
 
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+
+type RootStackParamList = {};
+
+type NavigationProps = NavigationProp<RootStackParamList>;
+
 const EditEpisode = () => {
+  const navigation = useNavigation<NavigationProps>();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [videoFile, setVideoFile] = useState(null);
@@ -30,7 +38,10 @@ const EditEpisode = () => {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <TouchableOpacity style={styles.backButton}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
         <View style={styles.backIcon}>
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </View>
