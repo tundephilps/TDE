@@ -11,7 +11,11 @@ import {
   ScrollView,
 } from "react-native";
 
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+
 const WithdrawCoins = () => {
+  const navigation = useNavigation();
+
   const [selectedMethod, setSelectedMethod] = useState("Bank transfer");
 
   const paymentMethods = ["Bank transfer", "Flutter", "Paypal", "Stripe"];
@@ -19,8 +23,18 @@ const WithdrawCoins = () => {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <TouchableOpacity style={styles.backButton}>
-        <View style={{ backgroundColor: "#5c5c59", padding: 2, opacity: 0.7 }}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <View
+          style={{
+            backgroundColor: "#5c5c59",
+            padding: 2,
+            opacity: 0.7,
+            borderRadius: 6,
+          }}
+        >
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </View>
         <Text style={styles.backText}>Withdraw Coins</Text>
@@ -104,6 +118,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     marginLeft: 10,
+    fontWeight: "700",
   },
   title: {
     color: "white",

@@ -18,8 +18,18 @@ const Settings = () => {
   return (
     <View style={styles.container}>
       {/* Back Button */}
-      <TouchableOpacity style={styles.backButton}>
-        <View style={{ backgroundColor: "#5c5c59", padding: 2, opacity: 0.7 }}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <View
+          style={{
+            backgroundColor: "#5c5c59",
+            padding: 2,
+            opacity: 0.7,
+            borderRadius: 6,
+          }}
+        >
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </View>
         <Text style={styles.backText}>App settings</Text>
@@ -40,7 +50,7 @@ const Settings = () => {
         />
       </View>
 
-      <View style={styles.settingRow}>
+      {/* <View style={styles.settingRow}>
         <Image
           source={require("../assets/images/Moon.png")}
           style={styles.icon}
@@ -52,7 +62,7 @@ const Settings = () => {
           trackColor={{ false: "#767577", true: "#ff7300" }}
           thumbColor={isDarkModeEnabled ? "#fff" : "#f4f3f4"}
         />
-      </View>
+      </View> */}
 
       <TouchableOpacity
         style={styles.settingRow2}
@@ -94,6 +104,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     marginLeft: 10,
+    fontWeight: "700",
   },
   settingRow: {
     flexDirection: "row",

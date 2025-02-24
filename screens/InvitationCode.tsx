@@ -2,8 +2,10 @@ import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as Clipboard from "expo-clipboard";
+import { useNavigation } from "@react-navigation/native";
 
 const InvitationCode = () => {
+  const navigation = useNavigation();
   const inviteCode = "ABCD1234";
 
   const copyToClipboard = async () => {
@@ -14,8 +16,18 @@ const InvitationCode = () => {
   return (
     <View style={styles.container}>
       {/* Back Button */}
-      <TouchableOpacity style={styles.backButton}>
-        <View style={{ backgroundColor: "#5c5c59", padding: 2, opacity: 0.7 }}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <View
+          style={{
+            backgroundColor: "#5c5c59",
+            padding: 2,
+            opacity: 0.7,
+            borderRadius: 6,
+          }}
+        >
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </View>
         <Text style={styles.backText}>Invitation Code</Text>

@@ -9,8 +9,18 @@ const AboutUs = () => {
   return (
     <View style={styles.container}>
       {/* Back Button */}
-      <TouchableOpacity style={styles.backButton}>
-        <View style={{ backgroundColor: "#5c5c59", padding: 2, opacity: 0.7 }}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <View
+          style={{
+            backgroundColor: "#5c5c59",
+            padding: 2,
+            opacity: 0.7,
+            borderRadius: 6,
+          }}
+        >
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </View>
         <Text style={styles.backText}>About Us</Text>
@@ -65,7 +75,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     marginLeft: 10,
-    fontWeight: 800,
+    fontWeight: 700,
   },
   balanceContainer: {
     alignItems: "center",

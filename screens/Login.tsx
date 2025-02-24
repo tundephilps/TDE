@@ -1,7 +1,20 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+
+type RootStackParamList = {
+  Homepage: undefined;
+};
+
+type NavigationProps = NavigationProp<RootStackParamList>;
+
 const SignUpScreen = () => {
+  const navigation = useNavigation<NavigationProps>();
+  const handleLogin = async () => {
+    navigation.navigate("Homepage");
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -31,7 +44,7 @@ const SignUpScreen = () => {
           <Text style={styles.googleText}>Sign up with Google</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleLogin}>
           <Text style={styles.notNow}>Not Now</Text>
         </TouchableOpacity>
       </View>

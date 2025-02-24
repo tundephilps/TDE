@@ -1,3 +1,4 @@
+import CustomCoinInput from "@/components/BuyCoins/CustomCoinInput";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
@@ -8,47 +9,42 @@ import {
   FlatList,
   Image,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const coins = [
-  { id: "1", amount: 100, price: "₦500", borderColor: "purple" },
-  { id: "2", amount: 500, price: "₦3,500", borderColor: "green" },
-  { id: "3", amount: 1000, price: "₦5,000", borderColor: "orange" },
+  { id: "1", amount: 100, price: "$1", borderColor: "purple" },
+  { id: "2", amount: 500, price: "$5", borderColor: "green" },
+  { id: "3", amount: 1000, price: "$10", borderColor: "orange" },
 ];
 
 const paymentMethods = [
   {
-    id: "credit",
-    label: "Credit card",
-    logo: require("../assets/images/mastercard.png"),
+    id: "ApplePay",
+    label: "Apple Pay",
+    logo: require("../assets/images/apple.png"),
   },
   {
-    id: "paypal",
-    label: "Pay pal",
-    logo: require("../assets/images/Paypal.png"),
-  },
-  {
-    id: "flutter",
-    label: "Flutter",
-    logo: require("../assets/images/Flutter.png"),
-  },
-  {
-    id: "bank",
-    label: "Bank transfer",
-    logo: require("../assets/images/transfer.png"),
+    id: "GooglePay",
+    label: "Google Pay",
+    logo: require("../assets/images/googlepay.png"),
   },
 ];
 
 const BuyCoins = () => {
+  const navigation = useNavigation();
   const [selectedCoin, setSelectedCoin] = useState(null);
   const [selectedPayment, setSelectedPayment] = useState(null);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
         <View style={{ backgroundColor: "#5c5c59", padding: 2, opacity: 0.7 }}>
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </View>
-        <Text style={styles.backText}>Feedback</Text>
+        <Text style={styles.backText}>Buy Coins</Text>
       </TouchableOpacity>
       {/* Balance Section */}
       <View style={styles.balanceContainer}>
@@ -79,6 +75,8 @@ const BuyCoins = () => {
           </TouchableOpacity>
         )}
       />
+
+      <CustomCoinInput />
 
       {/* Payment Selection */}
       <Text style={styles.paymentTitle}>Payment Selection</Text>
@@ -153,7 +151,7 @@ const styles = StyleSheet.create({
   },
   selectedPayment: { borderColor: "white", borderWidth: 2 },
   paymentText: { color: "white", fontSize: 16, flex: 1 },
-  paymentLogo: { width: 30, height: 20 },
+  paymentLogo: { width: 80, height: 30 },
 
   purchaseButton: {
     backgroundColor: "#E63946",

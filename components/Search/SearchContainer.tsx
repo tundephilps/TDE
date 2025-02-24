@@ -1,12 +1,14 @@
 import React from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const SearchContainer = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        // onPress={() => navigation.goBack()}
+        onPress={() => navigation.goBack()}
         style={styles.backButton}
       >
         <Ionicons name="arrow-back" size={24} color="white" />

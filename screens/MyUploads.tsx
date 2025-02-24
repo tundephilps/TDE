@@ -7,8 +7,10 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 import Modal from "react-native-modal";
+import { useNavigation } from "@react-navigation/native";
 
 const MyUploads = () => {
+  const navigation = useNavigation();
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
 
@@ -30,7 +32,10 @@ const MyUploads = () => {
   return (
     <View style={{ flex: 1, backgroundColor: "#1b1b1b", padding: 20 }}>
       {/* Header */}
-      <TouchableOpacity style={styles.backButton}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
         <View style={styles.backIcon}>
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </View>

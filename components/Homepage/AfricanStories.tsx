@@ -1,18 +1,33 @@
 import React from "react";
-import { View, Text, FlatList, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+
+type RootStackParamList = {
+  VideoPlay: undefined;
+};
+
+type NavigationProps = NavigationProp<RootStackParamList>;
 
 const videos = [
   {
     id: "1",
-    title: "C**K",
+    title: "C**Ks",
     views: "432.5k Views",
     description: "A gripping tale of resilience and rebellion",
     image: require("../../assets/images/Film8.png"),
   },
   {
     id: "2",
-    title: "Vacation of Horror",
+    title: "Vacation of Horrors",
     views: "432.5k Views",
     description: "A gripping tale of resilience and rebellion",
     image: require("../../assets/images/Film8.png"),
@@ -34,25 +49,28 @@ const videos = [
 ];
 
 const AfricanStories = () => {
+  const navigation = useNavigation<NavigationProps>();
+  const handleVideoPlay = async () => {
+    navigation.navigate("VideoPlay");
+  };
+
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={videos}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Image source={item.image} style={styles.image} />
-            <View style={styles.overlay}>
-              <Ionicons name="play" size={14} color="white" />
-              <Text style={styles.views}>{item.views}</Text>
-            </View>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.description}>{item.description}</Text>
+    <FlatList
+      data={videos}
+      keyExtractor={(item) => item.id}
+      numColumns={2}
+      renderItem={({ item }) => (
+        <TouchableOpacity style={styles.card} onPress={handleVideoPlay}>
+          <Image source={item.image} style={styles.image} />
+          <View style={styles.overlay}>
+            <Ionicons name="play" size={14} color="white" />
+            <Text style={styles.views}>{item.views}</Text>
           </View>
-        )}
-      />
-    </View>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.description}>{item.description}</Text>
+        </TouchableOpacity>
+      )}
+    />
   );
 };
 

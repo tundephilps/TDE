@@ -7,8 +7,11 @@ import {
   StyleSheet,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const Feedback = () => {
+  const navigation = useNavigation();
+
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [feedback, setFeedback] = useState("");
   const [rating, setRating] = useState(0); // New state for star rating
@@ -36,8 +39,18 @@ const Feedback = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton}>
-        <View style={{ backgroundColor: "#5c5c59", padding: 2, opacity: 0.7 }}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <View
+          style={{
+            backgroundColor: "#5c5c59",
+            padding: 2,
+            opacity: 0.7,
+            borderRadius: 6,
+          }}
+        >
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </View>
         <Text style={styles.backText}>Feedback</Text>
@@ -96,6 +109,12 @@ const Feedback = () => {
         onChangeText={setFeedback}
         multiline
       />
+
+      {/* Save Button */}
+      <View style={{ height: 80 }} />
+      <TouchableOpacity style={styles.saveButton}>
+        <Text style={styles.saveText}>Submit Review</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -117,6 +136,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     marginLeft: 10,
+    fontWeight: 700,
   },
   heading: {
     fontSize: 20,
@@ -170,5 +190,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     height: 200,
     textAlignVertical: "top",
+  },
+  saveButton: {
+    backgroundColor: "#FF6A00",
+    padding: 15,
+    borderRadius: 6,
+    alignItems: "center",
+  },
+  saveText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });

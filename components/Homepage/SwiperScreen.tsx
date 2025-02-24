@@ -9,6 +9,14 @@ import {
 } from "react-native";
 import Swiper from "react-native-swiper";
 
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+
+type RootStackParamList = {
+  VideoPlay: undefined;
+};
+
+type NavigationProps = NavigationProp<RootStackParamList>;
+
 const { width, height } = Dimensions.get("window");
 
 const slides = [
@@ -76,6 +84,11 @@ const slides = [
 ];
 
 const SwiperScreen: React.FC = () => {
+  const navigation = useNavigation<NavigationProps>();
+  const VideoPlay = async () => {
+    navigation.navigate("VideoPlay");
+  };
+
   return (
     <View style={{ height: 500 }}>
       <Swiper
@@ -196,6 +209,7 @@ const SwiperScreen: React.FC = () => {
                   alignItems: "center",
                   flexDirection: "row",
                 }}
+                onPress={VideoPlay}
               >
                 <Entypo name="controller-play" size={24} color="white" />
                 <Text style={{ color: "white", fontWeight: "bold" }}>

@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Switch,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import * as ImagePicker from "expo-image-picker";
@@ -21,6 +22,10 @@ const Upload = () => {
   const [coverImage, setCoverImage] = useState<string | null>(null);
   const [videos, setVideos] = useState<any[]>([]);
   const [ageRestriction, setAgeRestriction] = useState("General");
+
+  const [isAdult, setIsAdult] = useState(false);
+
+  const toggleSwitch = () => setIsAdult((prev) => !prev);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -94,20 +99,17 @@ const Upload = () => {
         }}
       >
         <Text style={{ color: "white" }}>Age Restriction</Text>
-        <Picker
-          style={{
-            backgroundColor: "#2C2C2C",
-            width: 140,
-            borderRadius: 8,
-            color: "white",
-          }}
-          selectedValue={ageRestriction}
-          onValueChange={setAgeRestriction}
-        >
-          <Picker.Item label="General" value="General" />
-          <Picker.Item label="18+" value="18+" />
-          <Picker.Item label="13+" value="13+" />
-        </Picker>
+
+        <View style={styles.container}>
+          <Text style={styles.label}>{isAdult ? "18+" : "General"}</Text>
+          <Switch
+            trackColor={{ false: "#767577", true: "#FF6A00" }}
+            thumbColor={isAdult ? "#FFA500" : "#f4f3f4"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isAdult}
+          />
+        </View>
       </View>
       <View style={{ paddingTop: 12 }}>
         <Text style={{ color: "#ffffff" }}>Upload cover image</Text>
@@ -179,8 +181,6 @@ const Upload = () => {
             marginTop: 3,
           }}
         >
-          {/* <Text style={{ color: "white" }}>{video.name}</Text> */}
-
           <Text style={{ color: "white" }}>
             Flake of emotions Episode 01.Mp4
           </Text>
@@ -266,6 +266,15 @@ const styles = {
     color: "#AAA",
     fontSize: 13,
     marginLeft: 6,
+  },
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  label: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 };
 

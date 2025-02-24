@@ -16,6 +16,13 @@ import {
   StyleSheet,
 } from "react-native";
 import Swiper from "react-native-swiper";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+
+type RootStackParamList = {
+  Saerch: undefined;
+};
+
+type NavigationProps = NavigationProp<RootStackParamList>;
 
 const { width, height } = Dimensions.get("window");
 
@@ -32,6 +39,11 @@ const categories = [
 ];
 
 const Home: React.FC = () => {
+  const navigation = useNavigation<NavigationProps>();
+  const handleSearch = async () => {
+    navigation.navigate("Search");
+  };
+
   const [activeTab, setActiveTab] = useState(categories[0]);
 
   // Function to render the appropriate component based on active tab
@@ -44,10 +56,10 @@ const Home: React.FC = () => {
       case "Love & Romance":
         return <Animation />;
       case "Werewolf & Vampire":
-        return <Animation />;
+        return <Horror />;
 
       case "African Stories":
-        return <Horror />;
+        return <AfricanStories />;
       default:
         return <Animation />;
     }
@@ -72,6 +84,7 @@ const Home: React.FC = () => {
           TDE
         </Text>
         <TouchableOpacity
+          onPress={handleSearch}
           style={{ backgroundColor: "#3c3d37", padding: 6, borderRadius: 5 }}
         >
           <Feather name="search" size={24} color="white" />

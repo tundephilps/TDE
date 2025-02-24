@@ -31,6 +31,9 @@ import Settings from "@/screens/Settings";
 import Language from "@/screens/Language";
 import EditEpisode from "@/screens/EditEpisode";
 import EpisodeSelector from "@/components/EditEpisodes/EpisodesModal";
+import Ads from "@/screens/Ads";
+import Earnings from "@/screens/Earnings";
+import VideoPlay from "@/screens/VideoPlay";
 
 type RootStackParamList = {
   Login: undefined;
@@ -42,9 +45,12 @@ type RootStackParamList = {
   EditEpisode: undefined;
   WithdrawCoins: undefined;
   Binge: undefined;
+  VideoPlay: undefined;
   Profile: undefined;
   Favorite: undefined;
   BuyCoins: undefined;
+  Ads: undefined;
+  Earnings: undefined;
   AboutUs: undefined;
   Settings: undefined;
   Language: undefined;
@@ -110,25 +116,33 @@ const TabNavigator = () => (
 export default function Index() {
   return (
     <Stack.Navigator
-      initialRouteName="Homepage"
+      initialRouteName="Login"
       screenOptions={{ headerShown: false }}
     >
-      <Tab.Screen name="Favorite" component={Favorite} />
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Homepage" component={TabNavigator} />
+
+      <Tab.Screen name="Favorite" component={Favorite} />
       <Stack.Screen name="Feedback" component={Feedback} />
       <Stack.Screen name="InvitationCode" component={InvitationCode} />
       <Tab.Screen name="MyUpload" component={MyUploads} />
+      <Tab.Screen name="WithdrawCoins" component={WithdrawCoins} />
+
       <Tab.Screen name="Search" component={Search} />
 
       <Tab.Screen name="EditEpisode" component={EditEpisode} />
 
       <Tab.Screen name="EpisodeModal" component={EpisodeSelector} />
-      <Tab.Screen name="WithdrawCoins" component={WithdrawCoins} />
       <Stack.Screen name="BuyCoins" component={BuyCoins} />
       <Stack.Screen name="AboutUs" component={AboutUs} />
       <Stack.Screen name="Settings" component={Settings} />
+
+      <Stack.Screen name="Ads" component={Ads} />
+
+      <Stack.Screen name="Earnings" component={Earnings} />
+
+      <Stack.Screen name="VideoPlay" component={VideoPlay} />
       <Stack.Screen name="Language" component={Language} />
-      <Stack.Screen name="Homepage" component={TabNavigator} />
     </Stack.Navigator>
   );
 }

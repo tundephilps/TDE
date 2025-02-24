@@ -10,6 +10,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import SearchContainer from "@/components/Search/SearchContainer";
 import SearchCard from "@/components/Search/SearchCard";
+import { useNavigation } from "@react-navigation/native";
 
 const categories = [
   "Most Trending",
@@ -24,6 +25,7 @@ const categories = [
 ];
 
 const Search = () => {
+  const navigation = useNavigation();
   const [activeTab, setActiveTab] = useState(categories[0]);
 
   // Function to render the appropriate component based on active tab
