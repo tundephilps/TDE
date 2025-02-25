@@ -17,6 +17,7 @@ import {
 } from "react-native";
 import Swiper from "react-native-swiper";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import TopTen from "@/components/Homepage/TopTen";
 
 type RootStackParamList = {
   Saerch: undefined;
@@ -29,6 +30,7 @@ const { width, height } = Dimensions.get("window");
 const categories = [
   "Most Trending",
   "Continue Watching",
+  "Weekly Top 10",
   "Billionaire Hidden Identity",
   "Love & Romance",
   "Werewolf & Vampire",
@@ -51,6 +53,10 @@ const Home: React.FC = () => {
     switch (activeTab) {
       case "Most Trending":
         return <AfricanStories />;
+
+      case "Weekly Top 10":
+        return <TopTen />;
+
       case "Billionaire Hidden Identity":
         return <MostTrending />;
       case "Love & Romance":

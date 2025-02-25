@@ -9,7 +9,6 @@ import {
 import Modal from "react-native-modal";
 
 const genres = [
-  "Most Trending",
   "Billionaire Hidden Identity",
   "Love & Romance",
   "Werewolf & Vampires",
@@ -19,11 +18,7 @@ const genres = [
 ];
 
 const AddTags: React.FC = () => {
-  const [selectedTags, setSelectedTags] = useState<string[]>([
-    "Animation",
-    "Love & Romane",
-    "African Stories",
-  ]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => setModalVisible(!isModalVisible);
