@@ -14,6 +14,12 @@ import { Fontisto, Ionicons } from "@expo/vector-icons";
 import EpisodeSelector from "@/components/Binge/EpisodesModal";
 import { useNavigation } from "@react-navigation/native";
 
+import {
+  activateKeepAwake,
+  deactivateKeepAwake,
+  useKeepAwake,
+} from "expo-keep-awake";
+
 const { width, height } = Dimensions.get("window");
 
 const VideoPlay = () => {
@@ -22,6 +28,28 @@ const VideoPlay = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [showControls, setShowControls] = useState(true);
   const fadeAnim = useRef(new Animated.Value(1)).current;
+
+  useKeepAwake();
+  // Activate keep-awake when component mounts
+  useEffect(() => {
+    activateKeepAwake();
+
+    // Clean up by deactivating keep-awake when component unmounts
+    return () => {
+      deactivateKeepAwake();
+    };
+  }, []);
+
+  // Additional effect to handle keep-awake based on play state
+  useEffect(() => {
+    if (isPlaying) {
+      activateKeepAwake();
+    } else {
+      // Optionally allow sleep when paused
+      // If you want to keep the screen on even when paused, remove this line
+      // deactivateKeepAwake();
+    }
+  }, [isPlaying]);
 
   useEffect(() => {
     if (showControls) {

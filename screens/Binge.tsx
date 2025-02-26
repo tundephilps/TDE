@@ -13,6 +13,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import EpisodeSelector from "@/components/Binge/EpisodesModal";
 import { useNavigation } from "@react-navigation/native";
+import {
+  activateKeepAwake,
+  deactivateKeepAwake,
+  useKeepAwake,
+} from "expo-keep-awake";
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,6 +27,12 @@ const Binge = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [showControls, setShowControls] = useState(true);
   const fadeAnim = useRef(new Animated.Value(1)).current;
+
+  useKeepAwake();
+  useEffect(() => {
+    activateKeepAwake();
+    return () => deactivateKeepAwake(); // Clean up when component unmounts
+  }, []);
 
   useEffect(() => {
     if (showControls) {
