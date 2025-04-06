@@ -7,6 +7,8 @@ import {
   StatusBar,
   Dimensions,
   Animated,
+  FlatList,
+  Platform,
 } from "react-native";
 import { Video } from "expo-av";
 import { LinearGradient } from "expo-linear-gradient";
@@ -21,19 +23,72 @@ import {
 
 const { width, height } = Dimensions.get("window");
 
-const Binge = () => {
+// Sample video data - replace with your actual video sources
+const VIDEOS = [
+  {
+    id: "1",
+    source: require("../assets/videos/Meh.mp4"),
+    title: "The Wars of Freedom",
+    description:
+      "A gripping tale of resilience and rebellion, where oppressed souls rise against tyranny to forge a new future for all.",
+    tags: ["Vampires & Werewolves", "32 Episodes"],
+    likes: "34.5k",
+    stars: "11.2k",
+  },
+  {
+    id: "2",
+    source: require("../assets/videos/TDE.mp4"), // Replace with your second video
+    title: "Moonlight Shadows",
+    description:
+      "In the darkness, secrets emerge as the ancient conflict between two supernatural beings reaches its climax.",
+    tags: ["Mystery", "28 Episodes"],
+    likes: "29.1k",
+    stars: "9.8k",
+  },
+  {
+    id: "3",
+    source: require("../assets/videos/Gist.mp4"), // Replace with your third video
+    title: "Beyond the Horizon",
+    description:
+      "An epic adventure across uncharted lands where heroes discover their true destiny.",
+    tags: ["Adventure", "18 Episodes"],
+    likes: "42.3k",
+    stars: "15.6k",
+  },
+];
+
+const VideoItem = ({ item, index, visibleVideoIndex }) => {
   const navigation = useNavigation();
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [showControls, setShowControls] = useState(true);
   const fadeAnim = useRef(new Animated.Value(1)).current;
+  const isVisible = index === visibleVideoIndex;
 
   useKeepAwake();
+
+  // Control video playback based on visibility
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isVisible) {
+        videoRef.current.playAsync();
+        setIsPlaying(true);
+      } else {
+        videoRef.current.pauseAsync();
+        setIsPlaying(false);
+      }
+    }
+  }, [isVisible]);
+
+  // Activate keep-awake when component mounts
   useEffect(() => {
     activateKeepAwake();
-    return () => deactivateKeepAwake(); // Clean up when component unmounts
+    return () => {
+      deactivateKeepAwake();
+    };
   }, []);
 
+  // Handle controls fade effect
   useEffect(() => {
     if (showControls) {
       Animated.timing(fadeAnim, {
@@ -71,8 +126,6 @@ const Binge = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar translucent backgroundColor="transparent" />
-
       <TouchableOpacity
         activeOpacity={1}
         style={styles.videoContainer}
@@ -80,10 +133,10 @@ const Binge = () => {
       >
         <Video
           ref={videoRef}
-          source={require("../assets/videos/TDE.mp4")}
+          source={item.source}
           style={styles.video}
           resizeMode="cover"
-          shouldPlay
+          shouldPlay={isVisible}
           isLooping
         />
 
@@ -103,7 +156,7 @@ const Binge = () => {
               >
                 <Ionicons name="arrow-back" size={24} color="white" />
               </TouchableOpacity>
-              <Text style={styles.headerTitle}>The Wars of Freedom</Text>
+              <Text style={styles.headerTitle}>{item.title}</Text>
               <TouchableOpacity>
                 <Ionicons name="ellipsis-horizontal" size={24} color="white" />
               </TouchableOpacity>
@@ -113,7 +166,9 @@ const Binge = () => {
             <View style={styles.rightIcons}>
               <TouchableOpacity style={styles.iconButton}>
                 <Ionicons name="heart" size={26} color="white" />
-                <Text style={{ color: "white", fontSize: 10 }}>34.5k</Text>
+                <Text style={{ color: "white", fontSize: 10 }}>
+                  {item.likes}
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.iconButton}>
                 <Fontisto name="share-a" size={24} color="white" />
@@ -122,7 +177,9 @@ const Binge = () => {
               <EpisodeSelector />
               <TouchableOpacity style={styles.iconButton}>
                 <Ionicons name="star" size={26} color="white" />
-                <Text style={{ color: "white", fontSize: 10 }}>11.2k</Text>
+                <Text style={{ color: "white", fontSize: 10 }}>
+                  {item.stars}
+                </Text>
               </TouchableOpacity>
             </View>
 
@@ -136,24 +193,20 @@ const Binge = () => {
                   paddingBottom: 6,
                 }}
               >
-                <View style={styles.tag}>
-                  <Text style={styles.tagText}>Vampires & Werewolves</Text>
-                </View>
-                <View style={styles.tag}>
-                  <Text style={styles.tagText}>32 Episodes</Text>
-                </View>
+                {item.tags.map((tag, idx) => (
+                  <View key={idx} style={styles.tag}>
+                    <Text style={styles.tagText}>{tag}</Text>
+                  </View>
+                ))}
               </View>
-              <Text style={styles.title}>The Wars of Freedom</Text>
-              <Text style={styles.description}>
-                A gripping tale of resilience and rebellion, where oppressed
-                souls rise against tyranny to forge a new future for all.
-              </Text>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.description}>{item.description}</Text>
             </View>
 
             {/* Overlay Controls */}
             <View style={styles.controls}>
               <TouchableOpacity
-                onPress={() => videoRef.current.setPositionAsync(0)}
+                onPress={() => videoRef.current?.setPositionAsync(0)}
               >
                 <Ionicons name="play-back" size={40} color="white" />
               </TouchableOpacity>
@@ -166,7 +219,7 @@ const Binge = () => {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() =>
-                  videoRef.current.getStatusAsync().then((status) => {
+                  videoRef.current?.getStatusAsync().then((status) => {
                     if (status.isLoaded) {
                       videoRef.current.setPositionAsync(
                         status.positionMillis + 10000
@@ -185,15 +238,74 @@ const Binge = () => {
   );
 };
 
+const Binge = () => {
+  const [visibleVideoIndex, setVisibleVideoIndex] = useState(0);
+
+  const onViewableItemsChanged = useRef(({ viewableItems }) => {
+    if (viewableItems.length > 0) {
+      setVisibleVideoIndex(viewableItems[0].index);
+    }
+  }).current;
+
+  const viewabilityConfig = useRef({
+    itemVisiblePercentThreshold: 50,
+  }).current;
+
+  return (
+    <View style={{ flex: 1, backgroundColor: "black" }}>
+      <StatusBar translucent backgroundColor="transparent" />
+      <FlatList
+        data={VIDEOS}
+        renderItem={({ item, index }) => (
+          <VideoItem
+            item={item}
+            index={index}
+            visibleVideoIndex={visibleVideoIndex}
+          />
+        )}
+        keyExtractor={(item) => item.id}
+        pagingEnabled
+        showsVerticalScrollIndicator={false}
+        snapToInterval={height}
+        snapToAlignment="start"
+        decelerationRate="fast"
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
+      />
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "black" },
-  videoContainer: { flex: 1, justifyContent: "center", alignItems: "center" },
-  video: { position: "absolute", top: 0, left: 0, bottom: 0, right: 0 },
-  gradient: { position: "absolute", left: 0, right: 0, top: 0, height: height },
+  container: {
+    height,
+    width,
+    backgroundColor: "black",
+  },
+  videoContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  video: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+  gradient: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    height,
+  },
   overlay: {
     position: "absolute",
     width: "100%",
     height: "100%",
+    paddingBottom: "20%",
   },
   header: {
     flexDirection: "row",
@@ -201,22 +313,49 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     position: "absolute",
-    top: 12,
-    padding: 16,
+    top: 0,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
     zIndex: 10,
   },
-  backButton: { padding: 8, backgroundColor: "#3f3e3e", borderRadius: 8 },
-  headerTitle: { color: "white", fontSize: 18, fontWeight: "bold" },
+  backButton: {
+    padding: 8,
+    backgroundColor: "#3f3e3e",
+    borderRadius: 8,
+  },
+  headerTitle: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
   rightIcons: {
     position: "absolute",
     right: 16,
     top: height / 1.9 - 100,
     alignItems: "center",
   },
-  iconButton: { marginVertical: 16, alignItems: "center" },
-  bottomContent: { position: "absolute", bottom: 32, left: 16, right: 16 },
-  title: { color: "white", fontSize: 24, fontWeight: "bold", marginBottom: 8 },
-  description: { color: "white", fontSize: 14, opacity: 0.9, lineHeight: 20 },
+  iconButton: {
+    marginVertical: 16,
+    alignItems: "center",
+  },
+  bottomContent: {
+    position: "absolute",
+    bottom: Platform.OS === "ios" ? 180 : 80,
+    left: 16,
+    right: 16,
+  },
+  title: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  description: {
+    color: "white",
+    fontSize: 14,
+    opacity: 0.9,
+    lineHeight: 20,
+  },
   controls: {
     position: "absolute",
     flexDirection: "row",
@@ -233,7 +372,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 4,
   },
-  tagText: { color: "white", fontSize: 10, textAlign: "center" },
+  tagText: {
+    color: "white",
+    fontSize: 10,
+    textAlign: "center",
+  },
 });
 
 export default Binge;

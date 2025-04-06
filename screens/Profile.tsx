@@ -1,8 +1,18 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  TextInput,
+} from "react-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 
 import { useNavigation, NavigationProp } from "@react-navigation/native";
+
+import * as ImagePicker from "expo-image-picker";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Define the navigation parameter list
 type RootStackParamList = {
@@ -78,6 +88,38 @@ const Profile: React.FC = () => {
     }
     navigation.navigate(screen);
   };
+
+  const [name, setName] = useState("New User");
+  const [editing, setEditing] = useState(false);
+  const [imageUri, setImageUri] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      const storedName = await AsyncStorage.getItem("profileName");
+      const storedImage = await AsyncStorage.getItem("profileImage");
+      if (storedName) setName(storedName);
+      if (storedImage) setImageUri(storedImage);
+    };
+    loadProfile();
+  }, []);
+
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+    });
+    if (!result.canceled) {
+      const uri = result.assets[0].uri;
+      setImageUri(uri);
+      await AsyncStorage.setItem("profileImage", uri);
+    }
+  };
+
+  const saveName = async () => {
+    await AsyncStorage.setItem("profileName", name);
+    setEditing(false);
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: "#0a0a0a", padding: 20 }}>
       {/* Profile Header */}
@@ -89,16 +131,44 @@ const Profile: React.FC = () => {
           borderRadius: 10,
         }}
       >
-        <Image
-          source={require("../assets/images/profile.png")} // Replace with your local profile image
-          style={{ width: 50, height: 50, borderRadius: 25 }}
-        />
+        <TouchableOpacity onPress={pickImage}>
+          <Image
+            source={
+              imageUri
+                ? { uri: imageUri }
+                : require("../assets/images/profile.png")
+            }
+            style={{ width: 50, height: 50, borderRadius: 25 }}
+          />
+        </TouchableOpacity>
+
         <View style={{ marginLeft: 10, flex: 1 }}>
-          <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
-            Clotilda Daniels
-          </Text>
+          {editing ? (
+            <TextInput
+              style={{
+                color: "white",
+                fontSize: 16,
+                fontWeight: "bold",
+                borderBottomWidth: 1,
+                borderBottomColor: "white",
+              }}
+              value={name}
+              onChangeText={setName}
+              onBlur={saveName}
+              autoFocus
+            />
+          ) : (
+            <TouchableOpacity onPress={() => setEditing(true)}>
+              <Text
+                style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
+              >
+                {name}
+              </Text>
+            </TouchableOpacity>
+          )}
           <Text style={{ color: "white", fontSize: 12 }}>🏆 10 Uploads</Text>
         </View>
+
         <TouchableOpacity
           style={{
             backgroundColor: "#1e1e1e",
@@ -110,11 +180,10 @@ const Profile: React.FC = () => {
             borderWidth: 1,
             borderColor: "gray",
           }}
-          onPress={() => handleMenuPress("Login")}
+          onPress={() => console.log("Login pressed")}
         >
-          {/* <Ionicons name="logo-google" size={16} color="white" /> */}
           <Image
-            source={require("../assets/images/google.png")} // Replace with your local profile image
+            source={require("../assets/images/google.png")}
             style={{ width: 16, height: 16, borderRadius: 25 }}
           />
           <Text style={{ color: "white", marginLeft: 5 }}>Sign Up</Text>
